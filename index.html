@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Cá Nhân | Nguyễn Quốc Bảo</title>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --line: #d9e1ee;
+      --accent: #2563eb;
+      --accent-2: #0f766e;
+      --accent-soft: #eaf2ff;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+      --radius-sm: 16px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.10), transparent 26%),
+        radial-gradient(circle at top right, rgba(15, 118, 110, 0.10), transparent 24%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+        img {
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        }
+
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .section-divider {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 32px 0 20px;
+        color: var(--muted);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.82rem;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(37, 99, 235, 0.22),
+        transparent
+    );
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      border: 1px solid rgba(37, 99, 235, 0.14);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.88));
+      border: 1px solid rgba(215, 224, 238, 0.85);
+      box-shadow: var(--shadow);
+      border-radius: 30px;
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -60px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,0.13), transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 0.95fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin: 8px 0 12px;
+      font-size: clamp(2.1rem, 5vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .meta-pill {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: #f3f7ff;
+      border: 1px solid var(--line);
+      font-size: 0.95rem;
+      color: #324159;
+    }
+
+    .profile-card {
+      background: linear-gradient(180deg, #0f172a, #111827);
+      color: white;
+      border-radius: 26px;
+      padding: 22px;
+      min-height: 100%;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: -50px auto auto -20px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.18);
+      filter: blur(8px);
+    }
+
+    .profile-card h2 { margin: 0 0 10px; font-size: 1.3rem; }
+    .profile-card .small { color: rgba(255,255,255,0.78); font-size: 0.95rem; }
+    .profile-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .profile-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 12px 14px;
+    }
+
+    .profile-item .label {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.72;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .profile-item strong { font-size: 0.8rem; }
+
+    .section {
+      margin-top: 22px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(215, 224, 238, 0.9);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 1.55rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section p.lead {
+      margin-top: 0;
+      color: var(--muted);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .anchor-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .anchor-nav a {
+      font-size: 0.92rem;
+      padding: 10px 13px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #334155;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+      min-height: 100%;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      background: rgba(15, 118, 110, 0.08);
+      border: 1px solid rgba(15, 118, 110, 0.14);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 10px;
+      margin: 12px 0 0;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 28px;
+      color: var(--text);
+    }
+
+    .checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .note {
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 18px;
+      padding: 14px 16px;
+      color: #28406c;
+      margin-top: 12px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 16px;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .timeline-item .step {
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .timeline-item .desc h4 {
+      margin: 0 0 6px;
+      font-size: 1.02rem;
+    }
+
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .shot {
+      border: 1.5px dashed #aab7cc;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+      padding: 16px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .shot .placeholder {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      min-height: 120px;
+      border-radius: 16px;
+      background: repeating-linear-gradient(45deg, rgba(37,99,235,0.06), rgba(37,99,235,0.06) 10px, rgba(255,255,255,0.9) 10px, rgba(255,255,255,0.9) 20px);
+      color: #51627d;
+      font-weight: 700;
+      padding: 16px;
+    }
+
+    .two-col-text {
+      columns: 2;
+      column-gap: 24px;
+    }
+
+    .two-col-text p, .two-col-text li { break-inside: avoid; }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      overflow: hidden;
+      border-radius: 18px;
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .mini-table th,
+    .mini-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .mini-table th {
+      background: #f4f8ff;
+      color: #20324f;
+      font-size: 0.92rem;
+    }
+
+    .mini-table tr:last-child td { border-bottom: 0; }
+
+    .quote {
+      padding: 18px 18px 18px 20px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(15,118,110,0.08));
+      border: 1px solid rgba(37,99,235,0.12);
+      border-radius: 22px;
+      color: #24324a;
+      font-style: italic;
+    }
+
+    .footer {
+      margin-top: 22px;
+      padding: 20px 8px 8px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .soft-pill {
+      display: inline-flex;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      font-size: 0.92rem;
+      color: #3c4b61;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .tiny {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid, .grid-2, .grid-3, .timeline-item, .shot-grid { grid-template-columns: 1fr; }
+      .two-col-text { columns: 1; }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { max-width: none; padding: 0; }
+      .hero, .section, .card, .timeline-item, .shot, .mini-table { box-shadow: none !important; }
+      .section, .hero { break-inside: avoid; }
+      .anchor-nav { display: none; }
+      .hero { border-radius: 0; }
+      .section { border-radius: 0; border-left: 0; border-right: 0; }
+      a { text-decoration: none; color: inherit; }
+      .footer { page-break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="brand">
+        <span class="badge">Portfolio cá nhân</span>
+        <span>Thiết kế theo hướng trực quan và chuyên nghiệp</span>
+      </div>
+    </div>
+
+    <header class="hero" id="top">
+      <div class="hero-grid">
+        <div>
+          <div class="badge">Bài tập dự án cá nhân (Portfolio)</div>
+          <h1>Nguyễn Quốc Bảo</h1>
+          <p>
+            Đây là portfolio tổng hợp quá trình thiết lập nền tảng, tìm kiếm và đánh giá thông tin,
+            viết prompt, hợp tác trực tuyến, sáng tạo nội dung với AI, và phản tư về AI có trách nhiệm.
+            Bố cục được xây dựng theo đúng tinh thần của đề bài và rubric để thể hiện sự rõ ràng, logic,
+            chuyên nghiệp và có chiều sâu.
+          </p>
+          <div class="pill-row">
+            <span class="soft-pill">Học phần: Nhập môn công nghệ số và ứng dụng trí tuệ nhân tạo</span>
+            <span class="soft-pill">Lớp: K70I-CS6</span>
+          </div>
+          <div class="section-divider">
+            <span>Điều hướng</span>
+          </div>
+          <div class="anchor-nav">
+            <a href="#gioi-thieu">Mục tiêu</a>
+            <a href="#thuc-hien">Các bước thực hiện</a>
+            <a href="#san-pham">Sản phẩm</a>
+            <a href="#tong-ket">Tổng kết</a>
+          </div>
+        </div>
+          <aside class="profile-card">
+          <h2>Hồ sơ cá nhân</h2>
+          <div class="small">
+            Học sinh chủ động trong việc ứng dụng công nghệ số, AI và kỹ năng tổ chức thông tin để xây dựng sản phẩm học tập chuyên nghiệp.
+          </div>
+
+          <div class="profile-grid">
+            <div class="profile-item">
+              <span class="label">Định hướng thực hiện</span>
+              <strong>
+                Ưu tiên sự rõ ràng, tính logic, khả năng trình bày trực quan và chiều sâu phản tư để đáp ứng theo yêu cầu
+              </strong>
+            </div>
+
+            <div class="profile-item">
+              <span class="label">Thông điệp cá nhân</span>
+              <strong>
+                “Công nghệ và AI không thay thế tư duy con người, mà giúp con người làm việc hiệu quả và sáng tạo hơn khi được sử dụng đúng cách.”
+              </strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section class="section" id="gioi-thieu">
+      <div class="section-header">
+        <div>
+          <h2>I. Mục tiêu</h2>
+          <p class="lead">
+            Trình bày định hướng thực hiện, mục tiêu phát triển kỹ năng và giá trị tổng thể của dự án.
+          </p>
+        </div>
+        <span class="badge">Bố cục rõ ràng · Nội dung có hệ thống</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="tag">1. Mục tiêu học tập</div>
+          <p>
+            Xây dựng một portfolio cá nhân thể hiện đầy đủ quá trình làm việc, tư duy học tập và khả năng
+            vận dụng công cụ số để giải quyết nhiệm vụ. Portfolio không chỉ trình bày kết quả cuối cùng mà còn
+            cho thấy cách tôi tìm hiểu, thử nghiệm, chỉnh sửa và hoàn thiện sản phẩm theo từng bước.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag">2. Mục tiêu trình bày</div>
+          <p>
+            Thiết kế portfolio có bố cục đẹp, dễ đọc, dễ điều hướng, có ảnh chụp minh họa và phần mô tả ngắn gọn
+            nhưng đủ sâu. Từ đó, người chấm có thể nhìn thấy rõ mức độ hiểu bài, sự chủ động và khả năng tự đánh giá.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="thuc-hien">
+      <div class="section-header">
+        <div>
+          <h2>II. Các bước thực hiện</h2>
+          <p class="lead">
+            Nội dung được triển khai theo từng giai đoạn nhằm đảm bảo tính logic và sự nhất quán trong quá trình thực hiện.
+          </p>
+        </div>
+        <span class="badge">Quy trình triển khai có cấu trúc</span>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="step">Bước 1</div>
+          <div class="desc">
+            <h4>Thiết lập nền tảng Portfolio</h4>
+            <p>
+              Tôi lựa chọn một công cụ phù hợp để xây dựng portfolio dạng website tĩnh có thể chia sẻ nhanh.
+              Giao diện được tối ưu theo hướng tối giản nhưng hiện đại, ưu tiên khả năng đọc, độ tương phản tốt
+              và khả năng hiển thị đẹp trên màn hình lớn lẫn nhỏ.
+            </p>
+            <ul class="checklist">
+              <li>Tạo khung trang rõ ràng: tiêu đề, menu, nội dung chính, kết luận.</li>
+              <li>Chọn bảng màu nhất quán và kiểu chữ dễ đọc.</li>
+              <li>Chuẩn bị vị trí đặt ảnh chụp minh chứng cho từng nhiệm vụ.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="step">Bước 2</div>
+          <div class="desc">
+            <h4>Hoàn thiện 6 nhiệm vụ theo yêu cầu</h4>
+            <p>
+              Mỗi nhiệm vụ được trình bày riêng thành một cụm nội dung: quản lý tệp và thư mục; tìm kiếm và đánh giá
+              thông tin; viết prompt hiệu quả; hợp tác trực tuyến; sáng tạo nội dung với AI; AI có trách nhiệm.
+              Cách trình bày này giúp người đọc dễ theo dõi và đối chiếu với rubric.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="step">Bước 3</div>
+          <div class="desc">
+            <h4>Hoàn thiện phần phản tư và tổng kết</h4>
+            <p>
+              Tôi thêm phần tổng kết để nêu điều đã học được, khó khăn đã gặp, cách tôi vượt qua và định hướng áp dụng
+              kỹ năng trong các dự án sau. Đây là phần giúp bài làm có chiều sâu và thể hiện sự trưởng thành trong tư duy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>III. Cách thức thể hiện nội dung</h2>
+          <p class="lead">Phần này tập trung vào cách trình bày nội dung một cách rõ ràng, trực quan và có tính hệ thống nhằm nâng cao chất lượng tổng thể của dự án.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="tag">A. Rõ ràng</div>
+          <p>
+            Mỗi nhiệm vụ có tiêu đề riêng, mô tả ngắn, minh chứng cụ thể và kết luận ngắn về những gì đã học được.
+            Không viết lan man, tập trung vào ý chính và kết quả.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag">B. Có minh chứng</div>
+          <p>
+            Ảnh chụp màn hình, sơ đồ thư mục, giao diện công cụ, lịch sử chat prompt hoặc sản phẩm AI đều được
+            đặt vào đúng chỗ để người chấm nhìn thấy bằng chứng trực tiếp.
+          </p>
+        </div>
+        <div class="card">
+          <div class="tag">C. Có phản tư</div>
+          <p>
+            Mỗi phần đều có 1-3 câu đánh giá: điều nào hiệu quả, điều nào cần cải thiện, và bài học rút ra cho lần sau.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="san-pham">
+      <div class="section-header">
+        <div>
+          <h2>IV. Nội dung chi tiết của từng nhiệm vụ</h2>
+          <p class="lead">
+            Phần dưới đây trình bày chi tiết nội dung, phương pháp thực hiện và kết quả đạt được của từng nhiệm vụ.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="tag">Nhiệm vụ 1 · Quản lý tệp & thư mục</div>
+          <p>
+            Tôi xây dựng cấu trúc thư mục theo nguyên tắc: rõ tên, dễ tìm, dễ mở rộng. Các thư mục được chia theo
+            từng nhiệm vụ, bên trong có file nội dung chính, ảnh minh chứng, và bản sao lưu. Quy tắc đặt tên dùng
+            cú pháp thống nhất để tránh nhầm lẫn và tiết kiệm thời gian khi nộp bài.
+          </p>
+          <ul class="checklist">
+            <li>Thư mục được sắp xếp theo thứ tự nhiệm vụ.</li>
+            <li>Tên file thống nhất, có ý nghĩa và không dài quá mức.</li>
+            <li>Ảnh minh chứng được đặt đúng thư mục tương ứng.</li>
+          </ul>
+          <div class="note">
+  Việc tổ chức dữ liệu hợp lý giúp tối ưu khả năng quản lý, truy xuất và duy trì tính nhất quán trong quá trình thực hiện dự án.
+</div>
+        </div>
+
+        <div class="card">
+          <div class="tag">Nhiệm vụ 2 · Tìm kiếm & đánh giá thông tin</div>
+          <p>
+            Tôi không chỉ tìm thông tin bằng từ khóa đơn giản mà còn dùng các toán tử nâng cao như dấu ngoặc kép,
+            site:, filetype:, loại trừ bằng dấu trừ và kết hợp nhiều từ khóa để thu hẹp kết quả. Sau đó tôi so sánh
+            nguồn, kiểm tra tác giả, thời gian xuất bản và mức độ liên quan trước khi chọn thông tin sử dụng.
+          </p>
+          <ul class="checklist">
+            <li>Từ khóa cụ thể giúp kết quả chính xác hơn.</li>
+            <li>Đánh giá nguồn dựa trên độ tin cậy và tính cập nhật.</li>
+            <li>Ghi lại lý do chọn hoặc loại bỏ từng nguồn.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="tag">Nhiệm vụ 3 · Viết prompt hiệu quả</div>
+          <p>
+            Tôi tạo một prompt ban đầu đơn giản rồi cải tiến dần bằng cách thêm vai trò, bối cảnh, mục tiêu, ràng buộc
+            và định dạng đầu ra mong muốn. Nhờ vậy, kết quả AI tạo ra chính xác hơn, ít mơ hồ hơn và phù hợp hơn với
+            mục đích sử dụng.
+          </p>
+          <ul class="checklist">
+            <li>Prompt tốt cần có vai trò, nhiệm vụ, ngữ cảnh và tiêu chí đầu ra.</li>
+            <li>So sánh prompt cũ và prompt mới để thấy sự cải thiện.</li>
+            <li>Giải thích vì sao từng chi tiết làm kết quả tốt hơn.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="tag">Nhiệm vụ 4 · Hợp tác trực tuyến</div>
+          <p>
+            Tôi mô tả cách dùng công cụ làm việc nhóm như Trello, Notion, Google Docs hoặc nền tảng tương tự để phân
+            công nhiệm vụ, theo dõi tiến độ và trao đổi phản hồi. Việc có checklist, trạng thái công việc và lịch chỉnh
+            sửa giúp nhóm làm việc rõ ràng và hiệu quả hơn.
+          </p>
+          <ul class="checklist">
+            <li>Phân công vai trò minh bạch.</li>
+            <li>Theo dõi tiến độ bằng bảng hoặc nhãn trạng thái.</li>
+            <li>Lưu lại lịch sử góp ý và chỉnh sửa.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="tag">Nhiệm vụ 5 · Sáng tạo nội dung với AI</div>
+          <p>
+            Tôi sử dụng AI để hỗ trợ tạo nội dung, hình ảnh hoặc ý tưởng, sau đó chỉnh sửa thủ công để sản phẩm có
+            cá tính riêng. Phần mô tả nêu rõ quy trình: lên ý tưởng, tạo bản nháp, chọn phương án tốt nhất, tinh chỉnh,
+            và hoàn thiện sản phẩm cuối cùng.
+          </p>
+          <ul class="checklist">
+            <li>Có sản phẩm rõ ràng, không chỉ mô tả chung chung.</li>
+            <li>Nêu cách AI hỗ trợ ở từng giai đoạn.</li>
+            <li>Thể hiện dấu ấn cá nhân trong bản hoàn thiện.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="tag">Nhiệm vụ 6 · Sử dụng AI có Trách Nhiệm</div>
+          <p>
+            Tôi trình bày các nguyên tắc sử dụng AI an toàn và có trách nhiệm: kiểm tra sai sót, tránh phụ thuộc hoàn
+            toàn, tôn trọng quyền riêng tư, không đạo văn, và luôn đánh giá kết quả bằng tư duy phản biện. Phần này
+            cho thấy không chỉ biết dùng AI mà còn hiểu giới hạn của nó.
+          </p>
+          <ul class="checklist">
+            <li>Kiểm chứng thông tin trước khi sử dụng.</li>
+            <li>Không đưa dữ liệu nhạy cảm vào công cụ không phù hợp.</li>
+            <li>Đề cao sự trung thực học thuật và trách nhiệm cá nhân.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>V. Ảnh chụp minh chứng</h2>
+          <p class="lead">
+            Các hình ảnh dưới đây được sử dụng nhằm minh họa trực quan cho quá trình thực hiện và kết quả đạt được.
+          </p>
+        </div>
+      </div>
+
+      <div class="shot-grid">
+        <div class="shot">
+          <img
+            src="https://raw.githubusercontent.com/Imp-City/imgholder/refs/heads/main/imageholder/b1.png"
+            alt="Prompt minh họa">
+        </div>
+        <div class="shot">
+          <img
+            src="https://raw.githubusercontent.com/Imp-City/imgholder/refs/heads/main/imageholder/b2.png"
+            alt="Prompt minh họa">
+        </div>
+        <div class="shot">
+          <img
+            src="https://raw.githubusercontent.com/Imp-City/imgholder/refs/heads/main/imageholder/b3.png"
+            alt="Prompt minh họa">
+        </div>
+        <div class="shot">
+          <img
+            src="https://raw.githubusercontent.com/Imp-City/imgholder/refs/heads/main/imageholder/b4.png"
+            alt="Prompt minh họa">
+        </div>
+        <div style="grid-column: 1 / -1; display: flex; justify-content: center; margin-top: 10px;">
+          <iframe
+            width="1000"
+            height="560"
+            src="https://www.youtube.com/embed/QfA3-12u3BM"
+            title="YouTube video"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>VI. AI có trách nhiệm</h2>
+          <p class="lead">
+            Nội dung tập trung vào các nguyên tắc sử dụng AI an toàn, minh bạch và có trách nhiệm trong môi trường học tập số.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="tag">Nguyên tắc sử dụng</div>
+          <ul class="checklist">
+            <li>Luôn kiểm tra lại thông tin do AI tạo ra.</li>
+            <li>Không dùng AI để thay thế hoàn toàn tư duy cá nhân.</li>
+            <li>Tôn trọng bản quyền, dữ liệu và quyền riêng tư.</li>
+            <li>Ghi nhận rõ phần nào do AI hỗ trợ, phần nào do bản thân thực hiện.</li>
+            <li>Ưu tiên sự trung thực học thuật hơn là tốc độ hoàn thành.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="tag">Phân tích ngắn</div>
+          <p>
+            AI rất hữu ích trong việc gợi ý ý tưởng, tăng tốc soạn thảo và hỗ trợ chỉnh sửa, nhưng nó vẫn có thể
+            tạo ra sai sót hoặc nội dung chưa phù hợp. Vì vậy, người dùng cần đóng vai trò là người kiểm duyệt cuối
+            cùng, biết đặt câu hỏi, so sánh và xác nhận lại trước khi nộp hoặc công bố nội dung.
+          </p>
+          <div class="quote">
+            “AI là công cụ hỗ trợ mạnh mẽ, nhưng chất lượng cuối cùng vẫn phụ thuộc vào cách người học sử dụng nó.”
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tong-ket">
+      <div class="section-header">
+        <div>
+          <h2>VII. Tổng kết và đánh giá bản thân</h2>
+          <p class="lead">
+            Tổng hợp những kinh nghiệm đạt được, kỹ năng phát triển và định hướng áp dụng trong các dự án tiếp theo.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="two-col-text">
+        <p>
+        Qua quá trình thực hiện portfolio, tôi đã rèn luyện được nhiều kỹ năng quan trọng như tổ chức thông tin,
+        trình bày nội dung có hệ thống, tìm kiếm và đánh giá nguồn, viết prompt hiệu quả, hợp tác trực tuyến
+        và sử dụng AI một cách có trách nhiệm. Tôi nhận ra rằng chất lượng của một sản phẩm số không phụ thuộc
+        vào số lượng nội dung, mà phụ thuộc vào cách nội dung được tổ chức, giải thích và minh họa một cách rõ ràng.
+        </p>
+
+        <p>
+        Trong quá trình hoàn thiện dự án, tôi cũng cải thiện khả năng xây dựng bố cục nhất quán, diễn đạt ngắn gọn
+        và thực hiện phản tư sau từng nhiệm vụ. Những kỹ năng này không chỉ hỗ trợ tốt cho môn học hiện tại mà còn
+        có thể áp dụng trong các dự án học tập và làm việc sau này, đặc biệt trong môi trường cần tính chuyên nghiệp,
+        khả năng cộng tác và tư duy tổ chức nội dung hiệu quả.
+        </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div><strong>Nguyễn Quốc Bảo</strong> · Portfolio cá nhân</div>
+      <div class="tiny">
+        Portfolio tổng hợp quá trình học tập, ứng dụng công nghệ số và phát triển kỹ năng cá nhân.
+    </div>
+    </footer>
+  </div>
+</body>
+</html>
